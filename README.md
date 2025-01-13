@@ -6,8 +6,7 @@ Source code is under the [src](./src/) folder
 
 ## Model
 
-You can get a picked model from [here](https://github.com/gomu-gomu/ma-dl-projet-1/releases/latest).
-get both `X_test.pkl` and `y_test.pkl` and put them inside the [assets/model](./assets/model/) directory.
+You can get a picked model from [here](https://github.com/gomu-gomu/ma-dl-projet-1/releases/latest). get the `model.h5` file and put it inside the [assets/model](./assets/model/) directory.
 
 ## Usage
 
