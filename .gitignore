@@ -1,5 +1,6 @@
-# Model 
-*.pkl
+# Misc
+*.h5
+assets/tmp/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
