@@ -1,21 +1,54 @@
 import os
-import pickle
+from io import BytesIO
+
 from PIL import Image
 import streamlit as st
 
+import numpy as np
+import tensorflow as tf
+from keras.models import load_model
 
 
-MODEL_PATH = os.path.join('assets', 'model', 'X_test.pkl')
-X_TEST_PATH = os.path.join('assets', 'model', 'X_test.pkl')
-Y_TEST_PATH = os.path.join('assets', 'model', 'y_test.pkl')
+MODEL_PATH = os.path.join('assets', 'model', 'model.h5')
 
-def load_model():
-  with open(MODEL_PATH, 'rb') as model_file:
-    return pickle.load(model_file)
+def load():
+  return load_model(MODEL_PATH)
+
+def preprocess_image(image_path):
+  # Open the image file
+  img = Image.open(image_path)
+
+  # Resize the image to match the input shape of the model (224x224 for example)
+  img = img.resize((224, 224))
+
+  # Convert the image to a numpy array
+  img_array = np.array(img)
+
+  if img_array.ndim == 2:  # Grayscale image case
+    img_array = np.stack([img_array] * 3, axis=-1)  # Convert to 3 channels
+  elif img_array.shape[2] == 1:  # If the image has only 1 channel (e.g., grayscale)
+    img_array = np.repeat(img_array, 3, axis=-1)  # Repeat grayscale to 3 channels
+
+  # Normalize the image if the model was trained with normalized data
+  img_array = img_array / 255.0  # Normalize if the model uses values between 0 and 1
+
+  # Expand the dimensions to match the batch shape (1, 224, 224, 3)
+  img_array = np.expand_dims(img_array, axis=0)
+
+  return img_array
 
 def predict(image_path, model):
-    # Placeholder: Replace with your actual image preprocessing and prediction logic
-    return model.predict(image_path)
+  # Preprocess the image before making a prediction
+  processed_image = preprocess_image(image_path)
+  
+  # Predict using the model (this returns probabilities)
+  predictions = model.predict(processed_image)
+
+  # Convert probabilities to class (binary prediction, 0 or 1)
+  prediction_class = (predictions > 0.5).astype(int)  # Assuming binary classification with a sigmoid output
+  print(prediction_class)
+  # Return the prediction
+  return "Malignant" if prediction_class[0] == 1 else "Benign"
 
 def main():
   st.set_page_config(page_title="Breast Cancer Detection", layout="centered", page_icon="😷")
@@ -43,7 +76,7 @@ def main():
     st.image(Image.open(uploaded_file), caption="Uploaded Mammogram")
 
     # Load model
-    model = load_model()
+    model = load()
 
     # Predict button
     if st.button("Predict Cancer Status"):
