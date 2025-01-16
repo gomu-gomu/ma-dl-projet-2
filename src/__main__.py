@@ -66,19 +66,14 @@ def main():
   uploaded_file = st.file_uploader("Télécharger une image de mammographie (PNG)", type=["png"])
 
   if uploaded_file is not None:
-    # Save uploaded image temporarily
     image_path = os.path.join("assets/tmp", uploaded_file.name)
     os.makedirs("assets/tmp", exist_ok=True)
     with open(image_path, "wb") as temp_file:
       temp_file.write(uploaded_file.getbuffer())
 
-    # Display uploaded image
     st.image(Image.open(uploaded_file), caption="Uploaded Mammogram")
-
-    # Load model
     model = load()
 
-    # Predict button
     if st.button("Predict Cancer Status"):
       result = predict(image_path, model)
       st.success(f"Prediction: {result}")
