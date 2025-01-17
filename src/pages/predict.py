@@ -1,2 +1,2 @@
-def predict():
-    pass
+def render():
+    print("the predict page")
