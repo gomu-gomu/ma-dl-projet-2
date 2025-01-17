@@ -55,7 +55,6 @@ from pages import home, predict
 def main():
     home.render()
   #
-  # st.set_page_config(page_title="Breast Cancer Detection", layout="centered", page_icon="😷")
   #
   # st.title("Détection du cancer du sein à partir de la mammographie par l'utilisation de l'IA")
   # st.image("assets/banner.png")
