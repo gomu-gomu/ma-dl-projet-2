@@ -1,10 +1,9 @@
 import streamlit as st
+from utils import ui
 
 
 
-st.image("assets/banner.png", use_container_width=True)
-st.title("Application de détection du cancer du sein à partir de la mammographie")
-
+ui.header()
 col1, col2 = st.columns([2, 1])
 
 with col1:

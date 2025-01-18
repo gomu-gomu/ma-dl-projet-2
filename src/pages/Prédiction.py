@@ -1,5 +1,7 @@
 import streamlit as st
+from utils import ui
 
 
 
-st.title("Prédiction")
+ui.header()
+col1, col2 = st.columns([2, 1])
