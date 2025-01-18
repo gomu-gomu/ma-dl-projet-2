@@ -2,16 +2,18 @@ import streamlit as st
 from utils import ui, ai
 
 
-mammogram = st.sidebar.file_uploader("Sélectionnez une mammographie", type="png")
+
 model = ai.load()
 
+mammogram, threshold = ui.controls()
 ui.credits()
 ui.header("Faire une prédiction")
-col1, col2 = st.columns([2, 1])
 
-if mammogram is not None:
+if mammogram:
+    col1, col2 = st.columns([2, 1])
+    
     mam_np = ai.process(mammogram)
-    predictions = ai.predict(model, mam_np)
+    predictions = ai.predict(model, threshold, mam_np)
     diagnosis = "benign" if predictions["class"] == 0 else "malignant"
 
     with col1:
