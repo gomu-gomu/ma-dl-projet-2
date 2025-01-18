@@ -1,7 +1,6 @@
 import streamlit as st
 
+def app():
+    st.title("Home Page")
+    st.write("Welcome to the Home Page!")
 
-
-def render():
-    print("the home page")
-    st.set_page_config(page_title="Breast Cancer Detection", layout="centered", page_icon="😷")
