@@ -13,7 +13,7 @@ You can get a picked model from [here](https://github.com/gomu-gomu/ma-dl-projet
 The app can be run via:
 
 ```sh
-streamlit run src/__main__.py
+./scripts/run.sh
 ```
 
 ## Docker
@@ -21,5 +21,5 @@ streamlit run src/__main__.py
 This demo comes in with a docker image that can be run with:
 
 ```sh
-./scripts/run.sh
+./scripts/docker.sh
 ```
