@@ -3,13 +3,14 @@ from utils import ui, ai
 
 
 mammogram = st.sidebar.file_uploader("Sélectionnez une mammographie", type="png")
+model = ai.load()
 
 ui.credits()
 ui.header("Faire une prédiction")
 col1, col2 = st.columns([2, 1])
 
 if mammogram is not None:
-    model = ai.load()
+    img = ai.process(mammogram)
 
     with col1:
         st.image("assets/ui/benign.png", use_container_width=True)
