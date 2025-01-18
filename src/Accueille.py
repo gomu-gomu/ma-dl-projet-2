@@ -15,7 +15,7 @@ with col1:
 """)
 
 with col2:
-    st.image("assets/ui/side.jpg", use_container_width=True)
+    st.image("assets/ui/side.png", use_container_width=True)
     st.page_link("pages/Prédiction.py", label="Faire une prédiction", icon="🌟", help="Faire un diagnostic en direct", use_container_width=True)
     st.page_link("https://google.com", label="Article scientifique", icon="📄", help="Téléchargez l'article scientifique", use_container_width=True)
     st.page_link("https://github.com/gomu-gomu/ma-dl-projet-2", label="Code source", icon="🗃️", help="Accéder au code source de cette démo", use_container_width=True)
