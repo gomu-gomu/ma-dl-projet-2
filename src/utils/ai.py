@@ -28,12 +28,12 @@ def process(mammogram):
 
     return mam_np
 
-def predict(model, mam_np):
+def predict(model, threshold: float, mam_np):
     predictions = model.predict(mam_np)
     prediction = predictions[0]
 
     return {
         "confidence": prediction[0],
-        "class": (prediction[0] > 0.5).astype(int)
+        "class": (prediction[0] > threshold).astype(int)
     }
 
