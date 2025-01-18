@@ -12,11 +12,10 @@ col1, col2 = st.columns([2, 1])
 if mammogram is not None:
     mam_np = ai.process(mammogram)
     predictions = ai.predict(model, mam_np)
-
-    st.write(predictions)
+    diagnosis = "benign" if predictions["class"] == 0 else "malignant"
 
     with col1:
-        st.image("assets/ui/benign.png", use_container_width=True)
+        st.image(f"assets/ui/{diagnosis}.png", use_container_width=True)
         st.write("<breakdown>")
 
     with col2:
