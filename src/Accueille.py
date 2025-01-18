@@ -3,6 +3,7 @@ from utils import ui
 
 
 
+ui.credits()
 ui.header("Application de détection du cancer du sein à partir de la mammographie")
 col1, col2 = st.columns([2, 1])
 

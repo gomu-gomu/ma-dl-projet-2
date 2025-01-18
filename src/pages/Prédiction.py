@@ -3,6 +3,7 @@ from utils import ui
 
 
 
+ui.credits()
 ui.header("Faire une prédiction")
 col1, col2 = st.columns([2, 1])
 
