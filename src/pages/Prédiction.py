@@ -18,12 +18,12 @@ if mammogram:
 
     with col1:
         st.image(f"assets/ui/{diagnosis}.png", use_container_width=True)
-        st.write("<breakdown>")
+        st.write("<breakdown/>")
 
     with col2:
         st.image(mammogram, caption="mammographie", use_container_width=True)
-        st.write("<chart>")
-        st.write("<confidence>")
+        st.write("<chart/>")
+        st.write(f"<confidence>{predictions['confidence']}</confidence>")
 else:
     st.write("Sélectionnez une mammographie à partir du fichier d’entrée dans la barre latérale afin d’exécuter la prédiction.")
 
