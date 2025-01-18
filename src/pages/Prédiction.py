@@ -18,4 +18,5 @@ if mammogram:
         st.image(mammogram, use_container_width=True)
         st.write("<chart>")
         st.write("<confidence>")
-
+else:
+    st.write("Sélectionnez une mammographie à partir du fichier d’entrée dans la barre latérale afin d’exécuter la prédiction.")
