@@ -1,4 +1,6 @@
 import os
+import numpy as np
+import streamlit as st
 
 from PIL import Image
 from keras.models import load_model
@@ -7,6 +9,7 @@ from keras.models import load_model
 
 MODEL_PATH = os.path.join('assets', 'model', 'model.h5')
 
+@st.cache_data
 def load():
     return load_model(MODEL_PATH)
 
