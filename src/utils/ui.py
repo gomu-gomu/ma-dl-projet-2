@@ -8,7 +8,7 @@ def header(title: str):
     st.title(title)
 
 def controls():
-    threshold = 0.5
+    threshold = 0.50
     mammogram = st.sidebar.file_uploader("Sélectionnez une mammographie", type="png")
 
     if mammogram:
