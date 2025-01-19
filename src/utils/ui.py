@@ -39,6 +39,19 @@ def chart(confidence: float):
 
     st.altair_chart(chart, use_container_width=True)
 
+def breakdown(predictions: dict):
+    diagnosis = "Bénigne" if predictions["class"] == 0 else "Maligne"
+    confidence = predictions["confidence"] * 100 if predictions["class"] == 1 else (1 - predictions["confidence"]) * 100
+
+    st.markdown(
+    f"""
+        ## Résultat de la Prédiction
+
+        Le modèle de classification a analysé la mammographie fournie et a déterminé qu'elle appartient à la classe `{diagnosis}` avec un niveau de confiance de `{confidence}%`. Ce résultat est obtenu grâce à un réseau de neurones convolutif (CNN) formé sur des milliers de mammographies, conçu pour identifier les motifs complexes associés aux anomalies malignes dans les images médicales. Bien que le modèle ait une grande précision globale, il est important de noter que la confiance du modèle est une mesure probabiliste, et non une certitude absolue. Par conséquent, un niveau de confiance de `{confidence}%` indique une forte probabilité mais n'exclut pas complètement d'autres possibilités.
+
+        Il est recommandé de ne pas utiliser ce résultat comme un diagnostic final, mais plutôt comme un outil de soutien pour les professionnels de santé. Les modèles d'apprentissage automatique, bien qu'efficaces, peuvent être influencés par des facteurs tels que la qualité de l'image, les caractéristiques spécifiques des données de formation, ou des cas rares non représentés dans le dataset. Une interprétation médicale experte est essentielle pour valider ou approfondir cette prédiction. En cas de doute, une analyse supplémentaire, telle qu'une biopsie ou une imagerie complémentaire, peut être nécessaire. L'objectif principal de cette prédiction est de fournir un aperçu préliminaire et d'aider les professionnels à prioriser les examens nécessitant une attention immédiate.
+    """)
+   
 def credits():
     st.sidebar.title("Credits")
     st.sidebar.markdown(
