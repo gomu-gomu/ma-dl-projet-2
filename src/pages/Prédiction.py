@@ -19,8 +19,7 @@ if mammogram:
 
     with col1:
         st.image(f"assets/ui/{diagnosis}.png", use_container_width=True)
-        st.write("<breakdown/>")
-
+        ui.breakdown(predictions)
     with col2:
         st.image(mammogram, caption="mammographie", use_container_width=True)
         ui.chart(predictions["confidence"])
