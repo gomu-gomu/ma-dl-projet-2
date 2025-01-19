@@ -1,4 +1,5 @@
 import streamlit as st
+import matplotlib.pyplot as plt
 from utils import ui, ai
 
 
@@ -22,8 +23,7 @@ if mammogram:
 
     with col2:
         st.image(mammogram, caption="mammographie", use_container_width=True)
-        st.write("<chart/>")
-        st.write(f"<confidence>{predictions['confidence']}</confidence>")
+        ui.chart(predictions["confidence"])
 else:
     st.write("Sélectionnez une mammographie à partir du fichier d’entrée dans la barre latérale afin d’exécuter la prédiction.")
 
