@@ -1,4 +1,6 @@
 import numpy as np
+import pandas as pd
+import altair as alt
 import streamlit as st
 
 
@@ -16,6 +18,26 @@ def controls():
 
     return mammogram, threshold
 
+def chart(confidence: float):
+    benign = 1 - confidence
+    malignant = confidence
+
+    data = pd.DataFrame({
+        "classes": ["Bénigne", "Maligne"],
+        "colors": ["#3AB76B", "#C43835"],
+        "values": np.array([benign, malignant]) * 100
+    })
+
+    chart = alt.Chart(data).mark_bar().encode(
+        x=alt.X("classes", title="Catégorie"),
+        y=alt.Y("values", title="Confidences", scale=alt.Scale(domain=[0, 100])),
+        color=alt.Color("colors:N", scale=None, legend=None)  # Use custom colors
+    ).properties(
+        width=400,
+        height=300
+    )
+
+    st.altair_chart(chart, use_container_width=True)
 
 def credits():
     st.sidebar.title("Credits")
